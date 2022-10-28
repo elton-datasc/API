@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-galera = {
+vendas = {
 
 1:{"produto":"refrigerante 2l","un":"garrafa", "area":"padaria","tipo":"bebida"},
 2:{"produto":"refrigerante lata","un":"lt","area":"padaria","tipo":"bebida"},
@@ -18,18 +18,16 @@ galera = {
 
 #criando as rotas
 
-@app.get("/galera")
-def pessoas():
-  return galera
+@app.get("/vendas")
+def produtos_vendidos():
+  return vendas
 
 
-@app.get("/galera/{id}")
-def filtro_pessoas(id: int):
-  return galera[id]
+@app.get("/vendas/{id}")
+def filtro_vendas(id: int):
+  return vendas[id]
   
 
 @app.get("/")
-def contagem_de_pessoas():
-  return {"galera" : len(galera)}
-
-
+def contagem_de_vendas():
+  return {"vendas" : len(vendas)}
