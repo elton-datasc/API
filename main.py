@@ -1,3 +1,4 @@
+from turtle import pu
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -31,3 +32,5 @@ def filtro_vendas(id: int):
 @app.get("/")
 def contagem_de_vendas():
   return {"vendas" : len(vendas)}
+
+
