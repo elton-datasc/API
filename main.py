@@ -4,9 +4,9 @@ app = FastAPI()
 
 galera = {
 
-1:{"nome":"elton","signo":"libra", "cidade":"joão pessoa","tipo":"ansioso"},
-2:{"nome":"lu","signo":"capricórnio","cidade":"sjdc","tipo":"radical livre"},
-3:{"nome":"raye","signo":"escorpião","cidade": "rio de janeiro","tipo":"teimosinha"},
+1:{"nome":"fulano","signo":"libra", "cidade":"guarabira","tipo":"ansioso"},
+2:{"nome":"cirrana","signo":"capricórnio","cidade":"sjdc","tipo":"brincalhão"},
+3:{"nome":"beltrana","signo":"escorpião","cidade": "rj","tipo":"invocada"},
 
 }
 
@@ -25,4 +25,5 @@ def filtro_pessoas(id: int):
 @app.get("/")
 def contagem_de_pessoas():
   return {"galera" : len(galera)}
+
 
