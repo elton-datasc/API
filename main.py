@@ -1,4 +1,3 @@
-from turtle import pu
 from fastapi import FastAPI
 
 app = FastAPI()
