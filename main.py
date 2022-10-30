@@ -1,3 +1,4 @@
+from turtle import pu
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -24,12 +25,12 @@ def produtos_vendidos():
 
 
 @app.get("/vendas/{id}")
-def filtro_vendas(id: int):
+def filtro_vendas_id(id: int):
   return vendas[id]
   
 
-@app.get("/")
-def contagem_de_vendas():
-  return {"vendas" : len(vendas)}
-
-
+@app.get("/soma_vendas")
+def vendas_totais():
+  l = [vendas[i]['pu'] for i in vendas]
+  i = [v for i, v in enumerate(vendas)]
+  return {"qtde de vendas" : len(i),"vendas totais" : sum(l)}
