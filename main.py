@@ -1,7 +1,38 @@
 from fastapi import FastAPI
 #python -m uvicorn main:app --reload
 
-app = FastAPI()
+
+description = """
+Demonstrativo de vendas mensais por produto.
+
+## Itens
+
+Itens **somente para consulta**.
+
+## Usuários
+
+Estão aptos:
+
+* **Baixar arquivos** (_implementado_).
+* **Realizar consultas** (_implementado_).
+"""
+
+app = FastAPI(
+    title="Vendas mensais",
+    description=description,
+    version="0.0.1",
+    terms_of_service="http://example.com/terms/",
+    contact={
+        "name": "Elton Guilherme de Almeida",
+        "url": "https://www.linkedin.com/in/elton-guilherme/",
+        "email": "elton_guilherme_dsc@hotmail.com",
+    },
+    license_info={
+        "name": "Apache 2.0",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+        
+    },
+)
 
 vendas = {
 
