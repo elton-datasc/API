@@ -34,3 +34,7 @@ def vendas_totais():
   l = [vendas[i]['pu'] for i in vendas]
   i = [v for i, v in enumerate(vendas)]
   return {"qtde de vendas" : len(i),"vendas totais" : sum(l)}
+
+@app.get("/openapi.json")
+def schema():
+  return schema
