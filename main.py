@@ -1,6 +1,6 @@
 from fastapi import FastAPI
+import pandas as pd
 #python -m uvicorn main:app --reload
-
 
 description = """
 Demonstrativo de vendas mensais por produto.
@@ -45,6 +45,11 @@ vendas = {
 7:{"produto":"tomate","un":"kg", "area":"hortifruti","tipo":"legume","pu":.8},
 8:{"produto":"laranja","un":"kg","area":"hortifruti","tipo":"fruta","pu":1.1},
 9:{"produto":"banana","un":"kg","area": "hortifruti","tipo":"fruta","pu":3.8},
+10:{"produto":"laranja","un":"kg","area": "hortifruti","tipo":"fruta","pu":1.1},
+11:{"produto":"pão de caixa","un":"kg","area": "padaria","tipo":"pao","pu":2.},
+12:{"produto":"pão de caixa","un":"kg","area": "padaria","tipo":"pao","pu":2.},
+13:{"produto":"catchup","un":"bisnaga", "area":"condimentos","tipo":"","pu":3.},
+14:{"produto":"mostarda","un":"bisnaga","area":"condimentos","tipo":"","pu":1.6},
 
 }
 
@@ -54,6 +59,19 @@ vendas = {
 def produtos_vendidos():
   return vendas
 
+@app.get("/vendas por produto")
+def vendas_por_produto():
+  l = [(vendas[i]['produto'],vendas[i]['pu']) for i in vendas]
+  df = pd.DataFrame(l, columns =['Produtos', 'Preço_unitario'])
+  s=[df.groupby(['Produtos'])['Preço_unitario'].sum()]
+  return s
+
+@app.get("/qtde por produto")
+def qtde_por_produto():
+  l = [(vendas[i]['produto'],vendas[i]['pu']) for i in vendas]
+  df = pd.DataFrame(l, columns =['Produtos', 'Preço_unitario'])
+  c=[df.groupby(['Produtos'])['Produtos'].count()]
+  return c
 
 @app.get("/vendas/{id}")
 def filtro_vendas_id(id: int):
